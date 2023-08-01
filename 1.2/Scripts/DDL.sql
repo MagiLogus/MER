@@ -1,0 +1,40 @@
+CREATE DATABASE Ex1_2;
+
+USE Ex1_2;
+
+CREATE TABLE Empresa (
+Id_empresa INT PRIMARY KEY IDENTITY,
+nomeEmpresa VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Modelo (
+Id_modelo INT PRIMARY KEY IDENTITY,
+nomeModelo VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Marca (
+Id_marca INT PRIMARY KEY IDENTITY,
+nomeMarca VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Veiculo (
+Id_veiculo INT PRIMARY KEY IDENTITY,
+Id_empresa INT FOREIGN KEY REFERENCES Empresa (Id_empresa),
+Id_modelo INT FOREIGN KEY REFERENCES Modelo (Id_modelo),
+Id_marca INT FOREIGN KEY REFERENCES Marca (Id_marca),
+veiculoPlaca VARCHAR(7) NOT NULL
+)
+
+CREATE TABLE Cliente (
+Id_cliente INT PRIMARY KEY IDENTITY,
+nomeCliente VARCHAR(50) NOT NULL,
+cpfCliente VARCHAR(11) NOT NULL
+)
+
+CREATE TABLE Aluguel (
+Id_aluguel INT PRIMARY KEY IDENTITY,
+Id_veiculo INT FOREIGN KEY REFERENCES Veiculo (Id_veiculo),
+Id_cliente INT FOREIGN KEY REFERENCES Cliente (Id_cliente),
+valorAluguel MONEY NOT NULL
+)
+
