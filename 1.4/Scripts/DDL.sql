@@ -1,0 +1,40 @@
+CREATE DATABASE Ex1_4;
+
+USE Ex1_4;
+
+CREATE TABLE Artista (
+Id_artista INT PRIMARY KEY IDENTITY,
+nomeArtista VARCHAR(150) NOT NULL
+)
+
+CREATE TABLE Usuario (
+Id_usuario INT PRIMARY KEY IDENTITY,
+nomeUsuario VARCHAR(50) NOT NULL,
+email VARCHAR(100) NOT NULL,
+senha VARCHAR(50) NOT NULL,
+permissao BIT NOT NULL
+)
+
+CREATE TABLE Estilo (
+Id_estilo INT PRIMARY KEY IDENTITY,
+nomeEstilo VARCHAR(150) NOT NULL
+)
+
+CREATE TABLE Album(
+Id_album INT PRIMARY KEY IDENTITY,
+Id_artista INT FOREIGN KEY REFERENCES Artista (Id_artista),
+titulo VARCHAR(50) NOT NULL,
+dataLançamento DATE NOT NULL,
+localizaçao VARCHAR(50) NOT NULL,
+qtdMinutos TIME NOT NULL,
+ativo BIT NOT NULL
+)
+
+CREATE TABLE AlbumEstilo(
+Id_album INT FOREIGN KEY REFERENCES Album (Id_album),
+Id_estilo INT FOREIGN KEY REFERENCES Estilo (Id_estilo)
+)
+
+
+
+ 

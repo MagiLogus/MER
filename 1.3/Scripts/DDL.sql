@@ -20,7 +20,7 @@ nomeRaça VARCHAR(50) NOT NULL
 CREATE TABLE Dono (
 Id_dono INT PRIMARY KEY IDENTITY,
 nomeDono VARCHAR(50) NOT NULL
-)--parei aqui
+)
 
 
 CREATE TABLE Veterinario (
@@ -29,29 +29,22 @@ Id_clinica INT FOREIGN KEY REFERENCES Clinica (Id_clinica),
 nomeVeterinario VARCHAR(50) NOT NULL
 )
 
-CREATE TABLE Atendi (
+CREATE TABLE Pet (
+Id_pet INT PRIMARY KEY IDENTITY,
+Id_tipopet INT FOREIGN KEY REFERENCES TipoPet (Id_tipopet),
+Id_raça INT FOREIGN KEY REFERENCES Raça (Id_raça),
+Id_dono INT FOREIGN KEY REFERENCES Dono (Id_dono),
+nomePet VARCHAR(50) NOT NULL,
+dataNascimento DATE NOT NULL
+)
+
+CREATE TABLE Atendimento (
 Id_atendimento INT PRIMARY KEY IDENTITY,
 Id_clinica INT FOREIGN KEY REFERENCES Clinica (Id_clinica),
-nomeMarca VARCHAR(50) NOT NULL
+Id_pet INT FOREIGN KEY REFERENCES PET (Id_pet),
+dataAtendimento DATE NOT NULL
 )
 
-CREATE TABLE Veiculo (
-Id_veiculo INT PRIMARY KEY IDENTITY,
-Id_empresa INT FOREIGN KEY REFERENCES Empresa (Id_empresa),
-Id_modelo INT FOREIGN KEY REFERENCES Modelo (Id_modelo),
-Id_marca INT FOREIGN KEY REFERENCES Marca (Id_marca),
-veiculoPlaca VARCHAR(7) NOT NULL
-)
 
-CREATE TABLE Cliente (
-Id_cliente INT PRIMARY KEY IDENTITY,
-nomeCliente VARCHAR(50) NOT NULL,
-cpfCliente VARCHAR(11) NOT NULL
-)
 
-CREATE TABLE Aluguel (
-Id_aluguel INT PRIMARY KEY IDENTITY,
-Id_veiculo INT FOREIGN KEY REFERENCES Veiculo (Id_veiculo),
-Id_cliente INT FOREIGN KEY REFERENCES Cliente (Id_cliente),
-valorAluguel MONEY NOT NULL
-)
+
